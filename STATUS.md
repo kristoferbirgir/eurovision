@@ -3,7 +3,7 @@
 Two of us work on this project. Every Claude Code session starts by reading this file and
 ends by updating it, so whoever opens the repo next knows where things stand.
 
-_Last updated: 2026-11-25, Methods paragraph for NMI / assortativity / backbone._
+_Last updated: 2026-11-26, main.tex fixed for the 2025 PNAS first-page layout; compiles in Overleaf._
 
 ## Done
 - [x] Vote network 1957–2026 with excess scores: `data/edges.csv`, `data/edges_agg.csv`
@@ -16,7 +16,7 @@ _Last updated: 2026-11-25, Methods paragraph for NMI / assortativity / backbone.
 - [x] Lyrics: `data/lyrics.csv`, embeddings, `data/lyrics_similarity.csv` per era; rating sheet ready
 - [x] 2023 semi-finals added from EurovisionAPI (edges.csv +574 rows)
 - [x] Taste-profile similarity: `data/taste_similarity.csv` (taste_sim + own_sim)
-- [x] Rating agreement script ready: `scripts/rating_agreement.py` (run after ratings)
+- [x] Hand ratings merged (`data/lyrics_rating_sheet.csv`) and rating agreement run: RESULTS.md, Methods validation sentence
 - [x] Year-centred lyric embeddings; taste robustness profiles (no top-5 partners, past only)
 - [x] Collinearity check: `data/predictor_correlations.csv`, `data/predictor_vif.csv`
 - [x] Step 6 main model: `data/regression_coefs.csv` (3 models × 6–7 specs)
@@ -26,7 +26,7 @@ _Last updated: 2026-11-25, Methods paragraph for NMI / assortativity / backbone.
 - [x] Step 8 Methods draft: `paper/methods.md` / `methods.tex` (generated from `paper/methods_template.md`, ~1 page)
 - [x] Robustness table: `paper/table_robustness.tex` / `.md`
 - [x] Measures table (captures / misses): `paper/table_measures.tex` / `.md`
-- [x] Overleaf: `paper/main.tex` + `python scripts/pack_overleaf.py` → `paper/overleaf/`
+- [x] Overleaf: `paper/main.tex` + `python scripts/pack_overleaf.py` → `paper/overleaf/` + `paper/overleaf.zip` (complete project with the course template from `paper/pnas_template/`, pnas-new.cls v1.47)
 - [x] Report files: `RESULTS.md` (facts per step) and `data/key_numbers.json` (written by scripts via `scripts/key_numbers.py`)
 - [x] Course methods (weeks 3–4), branch feat/course-measures: NMI `data/nmi.csv`, attribute assortativity `data/assortativity.csv` (language branch, UN M49 region `data/region.csv`), disparity backbone `data/backbone_edges.csv`; Fig 3 redrawn with backbone edges
 - [x] 2026 final checked against the official EBU scoreboard too (25/25, scripted in check_data.py)
@@ -37,7 +37,7 @@ _Last updated: 2026-11-25, Methods paragraph for NMI / assortativity / backbone.
 - (none)
 
 ## Next up (in order)
-0. Hand ratings: read `data/ratings_sheet.md`, each rater fills `data/ratings_rater1.csv` / `ratings_rater2.csv` alone (1–5) → `python scripts/merge_ratings.py` (checks 40 values) → `python scripts/rating_agreement.py` → RESULTS.md + Methods template
+1. Group writing (outline for Results: paper/results_outline.md): TODO sections in paper/main.tex (abstract, significance, introduction, results, discussion), 3 slides, reflection (deadline Fri 27 Nov 23:59)
 
 ## Decisions
 - Diaspora: missing UN pairs = 0 (robustness: observed pairs only); diaspora analysis 1997+, each vote year matched to nearest UN year.
@@ -59,17 +59,20 @@ _Last updated: 2026-11-25, Methods paragraph for NMI / assortativity / backbone.
 - Length: a stand-in two-column 9pt build (no PNAS class locally) is ~4–5 pages (5 after the 2026-11-25 bib additions) with Methods, 3 figures, 2 tables and refs, but no abstract / intro / results / discussion yet. Check in Overleaf.
 - Merge feat/course-measures into main (not pushed yet).
 - EurovisionAPI has no stated license (GitHub API: none): ask the maintainers or say so in the data availability statement.
-- paper TODOs: hand ratings, repository URL / data availability statement; captures/misses now in paper/table_measures.tex.
-- Overleaf: check main.tex against your project's PNAS class version (\matmethods / \showmatmethods).
+- paper TODOs: repository URL / data availability statement; captures/misses now in paper/table_measures.tex.
+- Overleaf: compiles (4 pages on 2026-11-26, limit 6 incl. refs). When writing, keep \Endparasplit in main.tex at the end of page 1 (\Parasplit if page 1 ends mid-paragraph).
 - Abstract, Significance, Introduction, Results text, Discussion, reflection: ours to write (TODO headers in methods_template.md).
-- Hand ratings: the sheet in the repo was still empty on 2026-11-16 — commit the filled `data/lyrics_rating_sheet.csv`.
-- Lyrics: rate the 20 pairs in `data/lyrics_rating_sheet.csv` independently (agree a scale first, e.g. 1–5); don't open `lyrics_rating_key.csv` before.
+- Hand ratings: rater 2 vs model is near 0 (0.035) while rater 1 vs model is 0.434; decide how to report this (n = 20, no CI computed).
 - Fill in the "what it found / how we use it" lines under Literature in NOTES.md (read the papers)
 - How to treat yu / cs (drop, or map to successors)?
 - Which era(s) does the paper focus on?
 
 ## Log
 <!-- Newest first. One line per session: date, who, what changed, what to check. -->
+- 2026-11-26, Brynja (via Claude): paper/results_outline.md — facts per Results paragraph (R1–R5) with numbers from RESULTS.md, interpretation left TODO. Check: split the paragraphs between us.
+- 2026-11-26, Brynja (via Claude): main.tex for the 2025 PNAS class: \Firstpage / \Endparasplit (page 1 layout), \dataavail, no DRAFT watermark, xurl, table_measures widths. Compiled in Overleaf: 4 pages, nothing over the margins. Check: move \Endparasplit as page 1 fills.
+- 2026-11-26, Brynja (via Claude): course PNAS template (pnas-new.cls v1.47) into paper/pnas_template/; pack_overleaf.py copies it and writes paper/overleaf.zip; main.tex header updated. Check: upload overleaf.zip to Overleaf and compile.
+- 2026-11-26, Brynja (via Claude): rater 1 ratings, merge_ratings.py + rating_agreement.py run, RESULTS / NOTES / Methods sentence. Check: the rating table in RESULTS.md.
 - 2026-11-25, Kristófer (via Claude): docs sync: README build list / data files / checks, CLAUDE.md diagnostics path, RESULTS edges + borders, MANIFEST entry for the derived raw/votes_eurovisionapi.csv. Open: data/ratings_sheet_blind.md (untracked, not ours) conflicts with rater numbering.
 - 2026-11-25, Kristófer (via Claude): bib TODOs resolved (DOIs for Burgoyne, Ginsburgh, Reimers 2019; Blondel journal; Reimers 2020 added; CLDR / UN license notes); 2026 final vs EBU scoreboard scripted. Check: Methods validation sentence.
 - 2026-11-25, Kristófer (rater 2): all 20 ratings in data/ratings_rater2.csv. Rater 1: fill data/ratings_rater1.csv without opening ratings_rater2.csv.

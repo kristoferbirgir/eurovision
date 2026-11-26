@@ -161,7 +161,18 @@ the matching profile). Language as category dummies (reference diff_family).
 - Largest absolute correlation between any two predictors: jury_2016 border–shared_official 0.370; tele_1997 shared_official–same_subbranch 0.375; tele_2016 border–shared_official 0.370; tele_2016_semis border–shared_official 0.375.
 
 ## Hand-rating agreement (`scripts/rating_agreement.py`; key_numbers: `rating_agreement`)
-- TODO: not run yet; waiting for the two ratings in `data/lyrics_rating_sheet.csv`.
+Run 2026-11-26. Rater 1 = Brynja, rater 2 = Kristófer; scale 1–5 (`data/ratings_sheet.md`), rated independently, merged by
+`scripts/merge_ratings.py` (40 of 40 whole numbers 1–5). Spearman ρ, n = 20 pairs (no CI or p-value computed):
+
+| | model, year-centred (main) | model, raw |
+|---|---|---|
+| rater 1 | 0.434 | 0.398 |
+| rater 2 | 0.035 | 0.048 |
+| mean rating | 0.271 | 0.236 |
+
+- Rater 1 vs rater 2: 0.427.
+- Captures: whether two people's sense of lyric similarity ranks pairs like the model. Misses: only 20 pairs, two raters,
+  English text (translations for most songs); the pairs were drawn on raw similarity.
 
 ## Main model (`scripts/build_pairs.py` → `data/pairs.csv`; `scripts/regression.py` → `data/regression_coefs.csv`, `data/regression_fit.csv`; key_numbers: `pairs`, `regression`)
 OLS, one row per directed pair A → B with ≥ 5 votes; outcome = mean signed excess. Language = category of the deepest

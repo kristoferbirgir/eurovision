@@ -865,6 +865,17 @@
       }
     }
   },
+  "rating_agreement": {
+    "_updated": "2026-11-26",
+    "n_pairs": 20,
+    "spearman_mean_vs_model_centred": 0.271,
+    "spearman_mean_vs_model_raw": 0.236,
+    "spearman_rater1_vs_model_centred": 0.434,
+    "spearman_rater1_vs_model_raw": 0.398,
+    "spearman_rater1_vs_rater2": 0.427,
+    "spearman_rater2_vs_model_centred": 0.035,
+    "spearman_rater2_vs_model_raw": 0.048
+  },
   "region": {
     "_updated": "2026-11-25",
     "countries_per_region": {

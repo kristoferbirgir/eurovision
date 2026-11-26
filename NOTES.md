@@ -99,7 +99,8 @@
   taste_sim vs own_sim: Pearson 0.589 / Spearman 0.563 per vote (n = 44,809);
   Pearson 0.605 / Spearman 0.593 per pair x era (n = 7,547).
 - 2026-11-16: Hand-rating agreement: scripts/rating_agreement.py (Spearman rater1–rater2, each rater–model, mean–model).
-  Not run yet; waits for the two ratings in data/lyrics_rating_sheet.csv.
+  Run 2026-11-26: rater 1 = Brynja (data/ratings_rater1.csv), rater 2 = Kristófer (data/ratings_rater2.csv), merged into
+  data/lyrics_rating_sheet.csv by scripts/merge_ratings.py. Numbers in RESULTS.md / key_numbers "rating_agreement".
 - 2026-11-16: DECIDED (group): year-centred embeddings for every lyric cosine. lyrics_similarity.py stores raw (emb) and
   centred (emb_c) vectors: centred = song vector minus the mean vector of all embedded songs of that year, re-normalised.
   own_sim and taste_sim use centred vectors; *_raw columns keep the uncentred values for comparison.
@@ -189,6 +190,17 @@
   (raw two-way [−0.093, −0.063], voter-only [−0.117, −0.038]).
 - 2026-11-16: DECIDED (group): captures/misses sentences back as paper/table_measures.tex (+ .md), one line each, drawn
   from RESULTS.md; hand-written (no numbers); \input in main.tex next to Methods.
+- 2026-11-26: Course PNAS template (zip from the teacher, downloaded from Overleaf as Social_Graphs_Report/) has
+  pnas-new.cls v1.47 (2025/11/01), pnas-new.bst, pnasresearcharticle.sty v1.3, jabbrv.sty + two .ldf, PNAS_Logo.pdf.
+  These are kept unchanged in paper/pnas_template/; pack_overleaf.py copies them next to our files and writes
+  paper/overleaf.zip. Checked: v1.47 defines \matmethods, \showmatmethods, \acknow, \showacknow, so main.tex is
+  unchanged apart from its header comment. The downloaded folder matched the pack output except methods.tex (older,
+  before the rating results). Not compiled locally (no LaTeX installed).
+- 2026-11-26: The 2025 class sets page 1 as one wide text column plus a narrow column (Significance box, author
+  details). main.tex now follows the official 2025 PNAS Overleaf template (Research_report.tex): \Firstpage after the
+  abstract, \Endparasplit where page 1 ends (\Parasplit mid-paragraph), \dataavail for the availability statement.
+  Without these the right column of page 1 ran off the page. Watermark off via \setboolean{displaywatermark}{false}
+  in main.tex (class file unchanged). Overleaf compile 2026-11-26: 4 pages, no overflow.
 
 ## Decisions
 - Excess = vote share minus the leave-one-out mean share the entry got from the other voters in the same round and vote type (see build_edges.py).

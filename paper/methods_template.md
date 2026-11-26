@@ -62,5 +62,7 @@ reconstructed 2026 final matches the official EBU scoreboard [@ebu2026grandfinal
 recomputed by a direct loop over votes agree with the vectorised computation (largest difference
 {{taste_similarity.brute_force_check.total.max_abs_diff}}). Predictors are weakly correlated (largest $|r|$ = {{collinearity.all_samples.max_abs_corr}}; largest variance inflation factor
 {{collinearity.all_samples.max_vif}}). Leaving out one country at a time, the same-family-only coefficient stays between
-{{leave_one_out.all_models.beta_min|.3f}} and {{leave_one_out.all_models.beta_max|.3f}} in all three models (the 95% CI includes 0 in {{leave_one_out.all_models.n_ci_includes_0}} of {{leave_one_out.all_models.n_refits}} refits). TODO (group): hand ratings of 20 song pairs by two raters
-(Spearman between raters and with the model), from scripts/rating_agreement.py.
+{{leave_one_out.all_models.beta_min|.3f}} and {{leave_one_out.all_models.beta_max|.3f}} in all three models (the 95% CI includes 0 in {{leave_one_out.all_models.n_ci_includes_0}} of {{leave_one_out.all_models.n_refits}} refits). Two of us rated
+{{rating_agreement.n_pairs}} song pairs (four from each quintile of model similarity) from 1 to 5 for similarity in topic and mood, each
+without seeing the other's ratings or the model score; Spearman's $\rho$ between the raters is {{rating_agreement.spearman_rater1_vs_rater2}}, and between the
+mean rating and the year-centred model similarity {{rating_agreement.spearman_mean_vs_model_centred}}.

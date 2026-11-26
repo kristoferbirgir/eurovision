@@ -1,18 +1,21 @@
 % Main manuscript, following the PNAS LaTeX template (pnas-new.cls, research article).
-% Structure checked against pnas-new.cls v1.44 (2018/05/06) as distributed in rstudio/rticles.
-% If your Overleaf project uses a newer PNAS class, check that \matmethods / \showmatmethods
-% and \acknow / \showacknow still exist there.
+% Class files: the course template, pnas-new.cls v1.47 (2025/11/01), kept in paper/pnas_template/.
+% \matmethods, \showmatmethods, \acknow and \showacknow are all defined in that class (checked).
+% Not compiled locally (no LaTeX installed here); compile in Overleaf.
 %
-% Overleaf files needed next to this one (made by `python scripts/pack_overleaf.py`):
+% `python scripts/pack_overleaf.py` puts everything in paper/overleaf/ (a complete project):
 %   methods.tex, figure_floats.tex, table_robustness.tex  (generated; do not edit by hand)
 %   table_measures.tex (hand-written: captures / misses per measurement)
 %   references.bib, fig1_modularity.pdf, fig2_coefficients.pdf, fig3_communities.pdf
-% The class files (pnas-new.cls etc.) come with the Overleaf PNAS template.
+%   + the class files from paper/pnas_template/
 
 \documentclass[9pt,twocolumn,twoside,lineno]{pnas-new}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \graphicspath{{./}{../figures/}}   % Overleaf: same folder; local build: ../figures/
+\setboolean{displaywatermark}{false}  % no DRAFT watermark (the class checks this at \begin{document})
+\usepackage{xurl}                     % let long URLs in the references break anywhere
+\setlength{\emergencystretch}{1.5em}  % narrow PNAS columns: stretch spaces rather than overrun the margin
 
 \templatetype{pnasresearcharticle}
 
@@ -43,9 +46,18 @@ TODO (group): abstract (at most 250 words).
 \maketitle
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+% 2025 PNAS class: page 1 has one wide text column (left) and a narrow column for the Significance box
+% and author details (right). \Firstpage sets the wide column; it lasts until \Endparasplit / \Parasplit
+% (as in the official 2025 PNAS Overleaf template, Research_report.tex).
+\Firstpage
 
 \section*{Introduction}
 TODO (group): introduction.
+
+% End of page 1: move this line to wherever the text on page 1 runs out (check the PDF after each
+% edit). If page 1 ends in the middle of a paragraph, put \Parasplit at that point instead.
+% Everything after it is set in the normal two equal columns.
+\Endparasplit
 
 \section*{Results}
 TODO (group): results text. Numbers: RESULTS.md and data/key\_numbers.json in the repository.
@@ -59,12 +71,11 @@ robustness runs: Table~\ref{tab:robustness}.
 \section*{Discussion}
 TODO (group): discussion.
 
-% TODO (group): PNAS asks for a data / code availability statement; check where the current
-% template puts it (repository URL, licences: see raw/MANIFEST.json).
 
 \matmethods{\input{methods}}
 \input{table_measures}   % what each measurement captures / misses (Table \ref{tab:measures})
 \showmatmethods{}
+\dataavail{TODO (group): repository URL for code and data; sources and licences in raw/MANIFEST.json.}
 
 \acknow{TODO (group): acknowledgements.}
 \showacknow{}
